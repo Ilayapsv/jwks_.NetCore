@@ -10,11 +10,17 @@ namespace EPICJWK.Controllers
     [ApiController]
     public class EPICJWKController : ControllerBase
     {
+        private readonly IWebHostEnvironment _env;
+
+        public EPICJWKController(IWebHostEnvironment env)
+        {
+            _env = env;
+        }
         [HttpGet("jwks.json")]
         public IActionResult GetJwks()
         {
             //string folderPath = Path.Combine(AppContext.BaseDirectory, "App_Data");
-            string folderPath = "../App_Data";
+            string folderPath = Path.Combine(_env.ContentRootPath, "App_Data");
 
             if (!Directory.Exists(folderPath))
                 return NotFound("App_Data folder not found.");
