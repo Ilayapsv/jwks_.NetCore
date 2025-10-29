@@ -20,6 +20,10 @@ RUN dotnet restore
 # Build and publish
 RUN dotnet publish -c Release -o /app/publish
 
+# Make sure App_Data is copied to output
+RUN mkdir -p /app/publish/App_Data
+COPY App_Data /app/publish/App_Data
+
 # ================================
 # 3️⃣ Final stage - runtime container
 # ================================
@@ -32,3 +36,4 @@ ENV ASPNETCORE_URLS=http://+:8080
 
 # Start the app
 ENTRYPOINT ["dotnet", "EPICJWK.dll"]
+
