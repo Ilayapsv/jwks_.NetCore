@@ -13,7 +13,8 @@ namespace EPICJWK.Controllers
         [HttpGet("jwks.json")]
         public IActionResult GetJwks()
         {
-            string folderPath = Path.Combine(AppContext.BaseDirectory, "App_Data");
+            //string folderPath = Path.Combine(AppContext.BaseDirectory, "App_Data");
+            string folderPath = "/jwks_.NetCore/App_Data";
 
             if (!Directory.Exists(folderPath))
                 return NotFound("App_Data folder not found.");
